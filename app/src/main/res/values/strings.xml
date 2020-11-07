@@ -2,4 +2,5 @@
     <string name="app_name">BOOKSCANChecker</string>
     <string name="menu_input">input</string>
     <string name="menu_info">info</string>
+    <string name="menu_scan">scan</string>
 </resources>

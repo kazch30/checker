@@ -73,6 +73,10 @@ class MainActivity : AppCompatActivity() {
                 startActivity.setClass(this, InfoActivity::class.java)
                 startActivity(startActivity)
             }
+            else -> {
+                if (BuildConfig.DEBUG) Log.d(TAG, "onOptionsItemSelected() item not found.")
+            }
+
         }
         return super.onOptionsItemSelected(item)
     }
