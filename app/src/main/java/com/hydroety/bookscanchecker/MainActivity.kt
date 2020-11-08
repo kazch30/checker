@@ -17,17 +17,18 @@ import kotlinx.android.synthetic.main.activity_sample.*
 
 class MainActivity : AppCompatActivity() {
     private val TAG = MainActivity::class.simpleName
-//    var barcodeView:DecoratedBarcodeView?=null
+    private val ISBN_LEN = 13
     private var lastText: String = ""
 
     private val callback = object : BarcodeCallback {
         override fun barcodeResult(result: BarcodeResult?) {
-            if (result?.text == null || result.text == lastText) {
+            if (result?.text == null || result.text == lastText ||
+                    result.text.length != ISBN_LEN || result.text.substring(0,3) != getString(R.string.isbn_def)) {
+                if (BuildConfig.DEBUG) Log.d(TAG, "skip : " + result?.text)
                 return
             }
             if (BuildConfig.DEBUG) Log.d(TAG, "BarcodeCallback : " + result.text)
             lastText = result.text
-            barcodeView?.setStatusText(result.text)
 
 
 
@@ -43,11 +44,10 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true) // Important step, we enable button on the left side of the toolbar
-        toolbar.navigationIcon = getDrawable(R.drawable.ic_white_apps_24) // Here we change default navigation button icon
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.navigationIcon = getDrawable(R.drawable.ic_white_apps_24)
 
 
-//        barcodeView = findViewById<DecoratedBarcodeView>(R.id.barcodeView)
         val formats = listOf(BarcodeFormat.EAN_13)
         barcodeView?.barcodeView?.decoderFactory = DefaultDecoderFactory(formats)
         barcodeView?.initializeFromIntent(intent)
@@ -89,6 +89,7 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         barcodeView?.pause()
+        lastText = ""
     }
 
     override fun onDestroy() {

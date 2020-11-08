@@ -1,6 +1,14 @@
 <resources>
-    <string name="app_name">BOOKSCANChecker</string>
+    <string name="app_name">Checker</string>
+    <string name="title_input">ISBN検索</string>
+    <string name="title_detail">検索結果</string>
+    <string name="title_info">アプリケーション情報</string>
     <string name="menu_input">input</string>
     <string name="menu_info">info</string>
     <string name="menu_scan">scan</string>
+    <string name="scan_headerhint">２本あるうちの上のバーコードを\n下の枠内に合わせてください</string>
+    <string name="scan_footerhint">バーコードは自動的にスキャンされます\n影や光が写り込まないようにしてください</string>
+    <string name="isbn_hint">本の裏に記載されている%1$d桁の&lt;font color=\"#FF8C00\"&gt;ISBN&lt;/font&gt;を&lt;br&gt;下記の枠内に入力してください。</string>
+    <string name="isbn_def">978</string>
+    <string name="btn_text">書籍を検索</string>
 </resources>

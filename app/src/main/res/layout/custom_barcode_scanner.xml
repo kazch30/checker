@@ -12,7 +12,8 @@
         android:layout_gravity="top|center_horizontal"
         android:layout_marginTop="40dp"
         android:background="@color/zxing_transparent"
-        android:text="このテキストは設定できます"
+        android:textSize="24sp"
+        android:text="@string/scan_headerhint"
         android:textColor="@color/zxing_status_text"/>
 
     <com.journeyapps.barcodescanner.ViewfinderView
@@ -26,6 +27,7 @@
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="40dp"
         android:background="@color/zxing_transparent"
-        android:text="このテキストはbarcodeView.setStatusText()で設定できます"
+        android:textSize="18sp"
+        android:text="@string/scan_footerhint"
         android:textColor="@color/zxing_status_text"/>
 </merge>
