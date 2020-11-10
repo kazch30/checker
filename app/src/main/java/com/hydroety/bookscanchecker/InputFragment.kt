@@ -1,5 +1,6 @@
 package com.hydroety.bookscanchecker
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
@@ -9,6 +10,8 @@ import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
 import androidx.core.text.HtmlCompat.FROM_HTML_MODE_COMPACT
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import kotlinx.android.synthetic.main.fragment_input.*
 
 class InputFragment : Fragment() {
@@ -54,6 +57,7 @@ class InputFragment : Fragment() {
                     text = getString(R.string.isbn_def) + text
                 }
                 if (BuildConfig.DEBUG) Log.d(TAG, "setOnClickListener() text:" + text)
+                showDetail(text)
             }
         }
     }
@@ -61,5 +65,14 @@ class InputFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         editTextNumber.requestFocus()
+    }
+
+    fun showDetail(isbn: String) {
+        context?.let {
+            val startActivity = Intent()
+            startActivity.putExtra(ARG_OBJECT, isbn)
+            startActivity.setClass(it, DetailActivity::class.java)
+            startActivity(startActivity)
+        }
     }
 }

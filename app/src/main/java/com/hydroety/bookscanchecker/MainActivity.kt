@@ -12,11 +12,12 @@ import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
 import com.journeyapps.barcodescanner.DefaultDecoderFactory
 import com.journeyapps.barcodescanner.camera.CameraSettings
-import kotlinx.android.synthetic.main.activity_sample.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
     private val TAG = MainActivity::class.simpleName
+    private val ARG_OBJECT = "object"
     private val ISBN_LEN = 13
     private var lastText: String = ""
 
@@ -29,10 +30,7 @@ class MainActivity : AppCompatActivity() {
             }
             if (BuildConfig.DEBUG) Log.d(TAG, "BarcodeCallback : " + result.text)
             lastText = result.text
-
-
-
-
+            showDetail(result.text)
         }
         override fun possibleResultPoints(resultPoints: MutableList<ResultPoint>?) {
         }
@@ -96,6 +94,13 @@ class MainActivity : AppCompatActivity() {
         if (BuildConfig.DEBUG) Log.i(TAG, "onDestroy()->")
         if (BuildConfig.DEBUG) Log.i(TAG, "<-onDestroy()")
         super.onDestroy()
+    }
+
+    fun showDetail(isbn: String) {
+        val startActivity = Intent()
+        startActivity.putExtra(ARG_OBJECT, isbn)
+        startActivity.setClass(this, DetailActivity::class.java)
+        startActivity(startActivity)
     }
 
 }

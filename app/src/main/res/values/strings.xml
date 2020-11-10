@@ -11,4 +11,9 @@
     <string name="isbn_hint">本の裏に記載されている%1$d桁の&lt;font color=\"#FF8C00\"&gt;ISBN&lt;/font&gt;を&lt;br&gt;下記の枠内に入力してください。</string>
     <string name="isbn_def">978</string>
     <string name="btn_text">書籍を検索</string>
+    <string name="detail_bookscount">この書籍はBOOKSCANで&lt;font size=\"5\"&gt;%1$d&lt;/font&gt;冊分です</string>
+    <string name="detail_info">書籍情報</string>
+    <string name="thumbnail_name">thumbnail.png</string>
+    <string name="dir_name">image</string>
+    <string name="storage_name">/app_image/</string>
 </resources>
