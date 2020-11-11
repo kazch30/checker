@@ -15,7 +15,7 @@
             app:tabBackground="@color/white"
             app:tabTextColor="@color/gray"
             app:tabSelectedTextColor="@color/black"
-            app:tabTextAppearance="@style/TabLayoutStyle"
+            app:tabTextAppearance="@style/tabLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
