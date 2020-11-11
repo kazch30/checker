@@ -12,4 +12,6 @@
     <color name="view_background">#FFDCDCDC</color>
     <color name="btn_background">#FF3CB371</color>
     <color name="btn_shadow">#FF006400</color>
+    <color name="toolbar_primary">#FF00CC66</color>
+    <color name="toolbar_variant">#FF006633</color>
 </resources>
