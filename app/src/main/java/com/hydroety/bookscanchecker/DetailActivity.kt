@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import io.reactivex.Single
@@ -118,7 +119,6 @@ class DetailActivity : AppCompatActivity() {
                 bookTitle.text = info.title
                 if (info.authors.size > 0 ) {
                     bookAuthors.text = info.authors[0]
-                    detailAuthors.text = info.authors[0]
 
                     info.authors.forEach { authors.add(it) }
                 }
@@ -126,9 +126,17 @@ class DetailActivity : AppCompatActivity() {
                 booksCountStart.text =  getString(R.string.detail_msgstart)
                 booksCountEnd.text = getString(R.string.detail_msgend)
                 booksCount.text = cnt.toString()
+                if (authors.size > 0) {
+                    detailAuthorsImage.visibility = View.VISIBLE
+                    detailAuthors.text = authors[0] // TODO
+                }
+                detailPublisherImage.visibility = View.VISIBLE
                 detailPublisher.text = "幻冬舎" // TODO
+                detailAdressImage.visibility = View.VISIBLE
                 detailAdress.text = "東京都渋谷区千駄ヶ谷４−９−７ー２F" // TODO
+                detailTelnumberImage.visibility = View.VISIBLE
                 detailTelnumber.text = "03-5411-6222" // TODO
+                detailInfo.visibility = View.VISIBLE
 
                 if (BuildConfig.DEBUG) Log.d(TAG, "thumbnail : " + info.imageLinks.thumbnail)
                 downloadThumbnail(info.imageLinks.thumbnail)

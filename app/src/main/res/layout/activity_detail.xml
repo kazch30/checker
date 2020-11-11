@@ -106,47 +106,109 @@
                 android:id="@+id/detailInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="invisible"
                 android:layout_margin="20dp"
                 android:gravity="center_horizontal"
                 android:textColor="@color/black"
                 android:text="@string/detail_info" />
 
-            <TextView
-                android:id="@+id/detailAuthors"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:textColor="@color/black" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/detailPublisher"
+                <ImageView
+                    android:id="@+id/detailAuthorsImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    android:layout_marginStart="50dp"
+                    app:srcCompat="@drawable/ic_gray_book_18" />
+
+                <TextView
+                    android:id="@+id/detailAuthors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:textColor="@color/black" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/detailAdress"
+                <ImageView
+                    android:id="@+id/detailPublisherImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    android:layout_marginStart="50dp"
+                    app:srcCompat="@drawable/ic_gray_library_books_18" />
+
+                <TextView
+                    android:id="@+id/detailPublisher"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:textColor="@color/black" />
+                android:orientation="horizontal">
 
-            <TextView
+                <ImageView
+                    android:id="@+id/detailAdressImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    android:layout_marginStart="50dp"
+                    app:srcCompat="@drawable/ic_gray_map_18" />
+
+                <TextView
+                    android:id="@+id/detailAdress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/detailTelnumberImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    android:layout_marginStart="50dp"
+                    app:srcCompat="@drawable/ic_gray_phone_18" />
+
+                <TextView
                 android:id="@+id/detailTelnumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:autoLink="phone"
                 android:textColor="@color/black" />
+
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
