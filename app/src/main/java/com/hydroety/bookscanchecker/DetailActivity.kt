@@ -25,6 +25,7 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var bookApi:BooksApi
     private var isbn:String = ""
     private var filePath:String = ""
+    private var progressDialog:ProgressDialog?=null
 
     companion object {
         private lateinit var compositeDisposable: CompositeDisposable
@@ -47,6 +48,7 @@ class DetailActivity : AppCompatActivity() {
         isbn = intent.getStringExtra(ARG_OBJECT) ?: ""
         if (BuildConfig.DEBUG) Log.d(TAG, "isbn : $isbn")
         bookApi = BooksApi()
+        progressDialog = ProgressDialog.newInstance(getString(R.string.progress_msg))
         if (BuildConfig.DEBUG) Log.i(TAG, "<-onCreate()")
     }
 
@@ -60,6 +62,7 @@ class DetailActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         if (BuildConfig.DEBUG) Log.i(TAG, "onResume()->")
+        progressDialog?.show(supportFragmentManager,"TAG")
         if (isbn.isNotEmpty()) searchBooks()
         if (BuildConfig.DEBUG) Log.i(TAG, "<-onResume()")
     }
@@ -88,15 +91,31 @@ class DetailActivity : AppCompatActivity() {
                     when (it) {
                         is BooksApiError.success -> {
                             showDetailInfo()
+                            progressDialog?.dismiss()
                         }
                         is BooksApiError.apiError -> {
                             if (BuildConfig.DEBUG) Log.e(TAG, "apiError")
+                            val message = getString(R.string.http_error_msg, bookApi.getStatusCode())
+                            SimpleDialogFragment(getString(R.string.error_title), message)
+                                    .show(supportFragmentManager,"TAG")
+                        }
+                        is BooksApiError.ioerror -> {
+                            if (BuildConfig.DEBUG) Log.e(TAG, "ioerror")
+                            val message = getString(R.string.io_error_msg)
+                            SimpleDialogFragment(getString(R.string.error_title), message)
+                                    .show(supportFragmentManager,"TAG")
                         }
                         is BooksApiError.decodeError -> {
                             if (BuildConfig.DEBUG) Log.e(TAG, "decodeError")
+                            val message = getString(R.string.decord_error_msg)
+                            SimpleDialogFragment(getString(R.string.error_title), message)
+                                    .show(supportFragmentManager,"TAG")
                         }
                         else -> {
                             if (BuildConfig.DEBUG) Log.e(TAG, "other error")
+                            val message = getString(R.string.io_error_msg)
+                            SimpleDialogFragment(getString(R.string.error_title), message)
+                                    .show(supportFragmentManager,"TAG")
                         }
                     }
 
@@ -206,4 +225,3 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 }
-

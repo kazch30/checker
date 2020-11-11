@@ -9,7 +9,7 @@ import retrofit2.HttpException
 import java.io.IOException
 
 sealed class BooksApiError: Throwable() {
-//    object incorrect: BooksApiError()
+    object ioerror: BooksApiError()
     object apiError: BooksApiError()
     object decodeError: BooksApiError()
     object success: BooksApiError()
@@ -21,7 +21,6 @@ class BooksApi {
     private var statusCode = 200
     private var errorMessage = ""
     private var booksinfo: BooksInfo?=null
-    private var title:String=""
     private var authors = mutableListOf<String>()
 
     fun getBookInfo(isbn:String) : Single<BooksApiError> {
@@ -50,25 +49,21 @@ class BooksApi {
                                 errorMessage = it.message ?: ""
                                 if (BuildConfig.DEBUG) Log.e(TAG, "errorMessage = " + errorMessage)
                                 if (BuildConfig.DEBUG) Log.e(TAG,"status code = " + statusCode)
-//                                e.onError(Throwable(BooksApiError.apiError))
                                 e.onSuccess(BooksApiError.apiError)
                             }
                             is IOException -> {
                                 if (BuildConfig.DEBUG) Log.e(TAG, "IOException = ", it)
                                 this.errorMessage = it.message ?: ""
                                 if (BuildConfig.DEBUG) Log.e(TAG, "errorMessage = " + this.errorMessage)
-//                                e.onError(Throwable(BooksApiError.apiError))
-                                e.onSuccess(BooksApiError.apiError)
+                                e.onSuccess(BooksApiError.ioerror)
                             }
                             is JsonSyntaxException -> {
                                 if (BuildConfig.DEBUG) Log.e(TAG, "JsonSyntaxException = ", it)
-//                                e.onError(Throwable(BooksApiError.decodeError))
                                 e.onSuccess(BooksApiError.decodeError)
                             }
                             else -> {
                                 if (BuildConfig.DEBUG) Log.e(TAG, "Exception = ", it)
-//                                e.onError(Throwable(BooksApiError.decodeError))
-                                e.onSuccess(BooksApiError.decodeError)
+                                e.onSuccess(BooksApiError.ioerror)
                             }
                         }
 

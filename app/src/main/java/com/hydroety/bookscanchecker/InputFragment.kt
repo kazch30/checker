@@ -10,8 +10,6 @@ import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
 import androidx.core.text.HtmlCompat.FROM_HTML_MODE_COMPACT
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import kotlinx.android.synthetic.main.fragment_input.*
 
 class InputFragment : Fragment() {
@@ -19,6 +17,7 @@ class InputFragment : Fragment() {
     private val ARG_OBJECT = "object"
     private val isbnDigit = arrayOf(13, 10)
     private var tag:Int = 0
+    private val ISBN_LEN = 10
 
 
     override fun onCreateView(
@@ -28,7 +27,6 @@ class InputFragment : Fragment() {
     ): View? {
         if (BuildConfig.DEBUG) Log.i(TAG, "onCreateView()->")
 
-        // Inflate the layout for this fragment
         val fragmentView = inflater.inflate(R.layout.fragment_input, container, false)
 
         if (BuildConfig.DEBUG) Log.i(TAG, "<-onCreateView()")
@@ -53,11 +51,18 @@ class InputFragment : Fragment() {
 
             button.setOnClickListener {
                 var text = editTextNumber.text.toString()
-                if (tag == 0) {
-                    text = getString(R.string.isbn_def) + text
+                if (text.length == ISBN_LEN) {
+                    if (tag == 0) {
+                        text = getString(R.string.isbn_def) + text
+                    }
+                    if (BuildConfig.DEBUG) Log.d(TAG, "setOnClickListener() text:" + text)
+                    showDetail(text)
+                } else {
+                    val dialog = SimpleDialogFragment(getString(R.string.invalid_isbn_title), getString(R.string.invalid_isbn_msg))
+                    fragmentManager.run{
+                        this?.let { it1 -> dialog.show(it1,"simple") }
+                    }
                 }
-                if (BuildConfig.DEBUG) Log.d(TAG, "setOnClickListener() text:" + text)
-                showDetail(text)
             }
         }
     }

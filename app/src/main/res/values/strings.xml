@@ -17,4 +17,12 @@
     <string name="thumbnail_name">thumbnail.png</string>
     <string name="dir_name">image</string>
     <string name="storage_name">/app_image/</string>
+    <string name="progress_msg">検索中…</string>
+    <string name="general_ok">OK</string>
+    <string name="invalid_isbn_title">ISBN入力</string>
+    <string name="invalid_isbn_msg">正しいISBNを入力してください</string>
+    <string name="error_title">エラー</string>
+    <string name="http_error_msg">ネットワークを確認し、もう一度お試しください\nStatus code (%1$d)</string>
+    <string name="io_error_msg">データの取得に失敗しました。\nネットワーク環境をご確認ください</string>
+    <string name="decord_error_msg">ネットワークを確認し、もう一度お試しください (J 0)</string>
 </resources>
