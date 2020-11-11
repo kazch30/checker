@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.text.HtmlCompat
 import com.bumptech.glide.Glide
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -123,13 +122,10 @@ class DetailActivity : AppCompatActivity() {
 
                     info.authors.forEach { authors.add(it) }
                 }
-                val cnt = info.pageCount.toInt()
-                booksCount.text =  HtmlCompat.fromHtml(
-                    getString(
-                        R.string.detail_bookscount,
-                        cnt / 100
-                    ), HtmlCompat.FROM_HTML_MODE_COMPACT
-                )
+                val cnt = info.pageCount.toInt() / 100 // TODO
+                booksCountStart.text =  getString(R.string.detail_msgstart)
+                booksCountEnd.text = getString(R.string.detail_msgend)
+                booksCount.text = cnt.toString()
                 detailPublisher.text = "幻冬舎" // TODO
                 detailAdress.text = "東京都渋谷区千駄ヶ谷４−９−７ー２F" // TODO
                 detailTelnumber.text = "03-5411-6222" // TODO
