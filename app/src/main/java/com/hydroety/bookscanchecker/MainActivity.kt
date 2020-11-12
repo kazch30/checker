@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toolbar.navigationIcon = getDrawable(R.drawable.ic_white_apps_24)
+        toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_white_apps_24)
 
         checkPermissions()
         initQRCamera()
